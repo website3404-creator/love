@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ចុចចូលមកបងមានរឿងសំខាន់ចង់សួរ</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4) no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* --- បេះដូងរត់ក្រោយ Background (ធ្លាក់ចុះរហូត) --- */
+  .heart {
+    position: fixed;
+    top: -10vh;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    transform: rotate(-45deg);
+    animation: fall linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .heart:before, .heart:after {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+  }
+  .heart:before { top: -10px; left: 0; }
+  .heart:after { top: 0; left: 10px; }
+
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(-45deg); opacity: 0; }
+  }
+
+  h1 {
+    margin-top: 50px;
+    font-size: 26px;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 10;
+  }
+
+  /* --- 💡 ផ្នែកបង្ខំឱ្យតុក្កតា "នៅមួយកន្លែង និងញាក់តិចៗ" មិនចេះឈប់ --- */
+  #cartoon-container {
+    margin-top: 20px;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    pointer-events: none; /* ហាមចុចលើរូប */
+  }
+
+  #cartoon-img {
+    width: 220px; /* ទំហំរូបភាព (អាចកែតាមចិត្ត) */
+    height: auto;
+    background-color: transparent !important;
+    /* 💡 ប្រើ Animation ល្បឿនលឿនបន្តិច តែចលនាតូចខ្លាំង ដើម្បីឱ្យវាញាក់ៗ */
+    animation: microMove 0.6s infinite alternate ease-in-out;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+  }
+
+  /* 💡 កូដដែលធ្វើឱ្យរូបភាពញាក់ៗ (Micromovement) */
+  @keyframes microMove {
+    0% {
+      /* 💡 ឱ្យវានៅមួយកន្លែងដដែល (0) តែបង្វិលតិចបំផុត */
+      transform: translateY(0) rotate(-0.5deg) scale(1);
+    }
+    100% {
+      /* 💡 រំកិលឡើងលើតែ ៣ភិចសែល (តូចខ្លាំង) និងបង្វិលទៅម្ខាងទៀត */
+      transform: translateY(-3px) rotate(0.5deg) scale(1.01);
+    }
+  }
+
+  /* --- ប៊ូតុង និងអក្សរ --- */
+  .btn {
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: 0.2s;
+  }
+
+  #yes { background: linear-gradient(45deg, #28a745, #34ce57); color: white; }
+  #no { background: linear-gradient(45deg, #dc3545, #ff4757); color: white; }
+
+  #share-btn {
+    background: linear-gradient(45deg, #007bff, #00c6ff);
+    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+  }
+
+  #byline {
+    color: #ff69b4; /* ពណ៌ផ្កាឈូក */
+    font-size: 16px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    z-index: 10;
+  }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <div id="heart-container"></div>
+
+  <h1 id="question">ព្រមធ្វើសង្សារបងអត់❤️</h1>
+
+  <div id="cartoon-container">
+    <img id="cartoon-img" src="2cef2bb1185493a6d2f723b3d04bd299.gif" alt="Proposal">
+  </div>
+
+  <button id="yes" class="btn">ព្រម</button>
+  <button id="no" class="btn">អត់ទេ</button>
+
+  <button id="share-btn" class="btn" onclick="shareToLover()">
+    <i class="fas fa-share-alt"></i> ផ្ញើឱ្យសង្សារ
+  </button>
+
+  <div id="byline">BY: Matin</div>
+
+<script>
+  const yesBtn = document.getElementById('yes');
+  const noBtn = document.getElementById('no');
+  const shareBtn = document.getElementById('share-btn');
+  const cartoonImg = document.getElementById('cartoon-img');
+
+  yesBtn.addEventListener('click', () => {
+    window.location.href = "https://youtu.be/-__W6u7gjGg?si=UCY6bhdMidx0D68l";
+  });
+
+  noBtn.addEventListener('click', moveNoButton);
+  noBtn.addEventListener('mouseover', moveNoButton);
+
+  function moveNoButton() {
+    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+    noBtn.style.left = Math.random() * maxX + 'px';
+    noBtn.style.top = Math.random() * maxY + 'px';
+  }
+
+  function shareToLover() {
+    if (navigator.share) {
+      navigator.share({ title: 'សំណួរសំខាន់ ❤️', url: window.location.href });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert("Copy link រួចរាល់!");
+    }
+  }
+
+  function positionElements() {
+    const imgRect = cartoonImg.getBoundingClientRect();
+    const bottom = imgRect.bottom + 40;
+    
+    yesBtn.style.top = bottom + 'px';
+    yesBtn.style.left = '30%';
+    yesBtn.style.transform = 'translateX(-50%)';
+
+    noBtn.style.top = bottom + 'px';
+    noBtn.style.left = '70%';
+    noBtn.style.transform = 'translateX(-50%)';
+
+    shareBtn.style.top = (bottom + 80) + 'px';
+    document.getElementById('byline').style.top = (bottom + 150) + 'px';
+  }
+
+  window.onload = positionElements;
+  window.onresize = positionElements;
+
+  // បេះដូងរត់ក្រោយ
+  setInterval(() => {
+    const container = document.getElementById('heart-container');
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = Math.random() * 3 + 5 + 's';
+    container.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+  }, 400);
+</script>
+</body>
+</html>
